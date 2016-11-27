@@ -1,0 +1,40 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--加载对话框样式-->
+    <style name="load_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item><!-- 边框 -->
+        <item name="android:windowIsFloating">true</item><!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">false</item><!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item><!-- 无标题 -->
+        <item name="android:windowBackground">@color/transparent</item><!-- 自己想要的背景 -->
+        <item name="android:backgroundDimEnabled">false</item><!-- 模糊 -->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="window_translucent" parent="android:Theme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+
+    </style>
+
+    <!--滑动返回-->
+    <style name="swipeback_activity_style" parent="window_translucent"></style>
+
+    <style name="j_timepopwindow_anim_style">
+        <item name="android:windowEnterAnimation">@anim/j_anim_enter_bottom</item> <!-- 指定显示的动画xml -->
+        <item name="android:windowExitAnimation">@anim/j_anim_exit_bottom</item> <!-- 指定消失的动画xml -->
+    </style>
+
+    <!--仿ios的dialog-->
+    <style name="Sweet.Alert.Dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+</resources>

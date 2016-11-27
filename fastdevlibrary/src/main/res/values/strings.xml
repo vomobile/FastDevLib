@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">FastDevLibrary</string>
+
+    <!--BaseRecyclerViewAdapterHelper-->
+    <string name="loading">正在加载中...</string>
+    <string name="load_failed">加载失败，请点我重试</string>
+    <string name="load_end">没有更多数据</string>
+
+    <!--版本更新-->
+    <string name="update_version_name">版本号</string>
+    <string name="update_title">你有新版本需要更新</string>
+    <string name="install_title">免下载安装</string>
+    <string name="install_immediate">立即安装</string>
+    <string name="update_immediate">立即更新</string>
+    <string name="update_cancel">取消</string>
+    <string name="update_ignore">忽略此版本</string>
+
+    <string name="common_confirm">Confirm</string>
+    <string name="common_cancel">Cancel</string>
+
+    <string name="common_title_tips">提示</string>
+
+    <string name="rtext1">Lorem ipsum dolor sit amet, </string>
+    <string name="rtext2">consectetur @adipiscing elit. http://www.naver.com Ut  #ornare efficitur nisi vel aliquam. In at #neque #ipsum. Duis dui enim, posuere quis semper eu, dictum vel #tortor. In urna #quam, varius sit #amet @bibendum non, semper id urna. #Aenean fringilla odio eu massa porta, at dapibus est euismod. @Donec faucibus eu mi quis #finibus. Quisque fermentum diam quam, at mattis nisi dictum non. @Pellentesque luctus interdum erat non placerat. #Mauris tincidunt viverra dapibus. www.google.com/ In ac #libero arcu. @Integer mollis cursus erat, vitae posuere ligula cursus non. https://www.daum.net</string>
+
+    <string name="j_pickerview_cancel">取消</string>
+    <string name="j_pickerview_submit">确定</string>
+</resources>

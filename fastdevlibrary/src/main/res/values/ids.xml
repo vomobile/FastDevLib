@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--BaseAdapter-->
+    <item name="BaseQuickAdapter_viewholder_support" type="id"/>
+    <item name="BaseQuickAdapter_swiping_support" type="id"/>
+    <item name="BaseQuickAdapter_dragging_support" type="id"/>
+
+    <!--SuperTextView-->
+    <item name="sLeftIconId" type="id" />
+    <item name="sCenterBaseLineId" type="id" />
+    <item name="sCenterTextId" type="id" />
+    <item name="sLeftTextId" type="id" />
+    <item name="sLeftTopTextId" type="id" />
+    <item name="sLeftBottomTextId" type="id" />
+    <item name="sLeftBottomTextId2" type="id" />
+    <item name="sRightTextId" type="id" />
+    <item name="sRightIconId" type="id" />
+
+    <!--加载状态页-->
+    <item name="btn_empty_retry" type="id"/>
+    <item name="btn_error_retry" type="id"/>
+    <item name="btn_retry_retry" type="id"/>
+
+    <!--dropdownmenu-->
+    <item name="fixedTabIndicator" type="id" />
+    <item name="mFilterContentView" type="id" />
+</resources>
