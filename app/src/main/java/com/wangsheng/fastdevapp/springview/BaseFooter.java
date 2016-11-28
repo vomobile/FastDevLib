@@ -2,7 +2,8 @@ package com.wangsheng.fastdevapp.springview;
 
 import android.view.View;
 
-import com.wangsheng.fastdevlibrary.pulltorefresh.SpringView;
+import com.wangsheng.fastdevlibrary.widget.SpringView;
+
 
 /**
  * 这个类为所有尾部的虚基类，实现自定义的尾巴需继承自该类

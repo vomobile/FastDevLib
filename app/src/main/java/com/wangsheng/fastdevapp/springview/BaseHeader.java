@@ -2,7 +2,7 @@ package com.wangsheng.fastdevapp.springview;
 
 import android.view.View;
 
-import com.wangsheng.fastdevlibrary.pulltorefresh.SpringView;
+import com.wangsheng.fastdevlibrary.widget.SpringView;
 
 
 /**
