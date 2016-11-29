@@ -18,9 +18,9 @@ import com.wangsheng.fastdevlibrary.commonutils.crash.DefaultCrashProcess;
  * 4.初始化toast
  * 如果以上在具体的项目中不需要或者不符合场景，请自行修改
  */
-public final class BasicConfig {
-    private Context mContext;
-    private BasicConfig(Context context){ this.mContext = context; }
+public class BasicConfig {
+    public Context mContext;
+    protected BasicConfig(Context context){ this.mContext = context; }
     private volatile static BasicConfig sBasicConfig;
 
     public static final BasicConfig getInstance(@NonNull Context context){
@@ -98,5 +98,4 @@ public final class BasicConfig {
         ToastUtil.init(mContext.getApplicationContext());
         return this;
     }
-
 }

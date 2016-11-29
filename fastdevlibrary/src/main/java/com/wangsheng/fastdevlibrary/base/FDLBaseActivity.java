@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.lzy.okgo.OkGo;
 import com.wangsheng.fastdevlibrary.R;
 import com.wangsheng.fastdevlibrary.commonutils.DeviceUtil;
 import com.wangsheng.fastdevlibrary.commonutils.KeyBordUtil;
 import com.wangsheng.fastdevlibrary.commonutils.SystemBarTintManager;
 import com.wangsheng.fastdevlibrary.widget.SwipeBackLayout;
+import com.wangsheng.fastdevlibrary.widget.dialog.LoadDialog;
 
 import java.util.List;
 
@@ -46,6 +48,7 @@ public class FDLBaseActivity extends AppCompatActivity implements EasyPermission
         view = getWindow().getDecorView().findViewById(android.R.id.content);
         //初始化相关
         initOption();
+        LoadDialog.show(mActivity);
     }
 
     private void initOption() {
@@ -181,6 +184,8 @@ public class FDLBaseActivity extends AppCompatActivity implements EasyPermission
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //终止请求
+        OkGo.getInstance().cancelTag(mActivity);
         ActivityManager.getAppManager().finishActivity(this);
     }
 
