@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,11 +13,12 @@ import com.wangsheng.fastdevlibrary.R;
 import com.wangsheng.fastdevlibrary.commonutils.DeviceUtil;
 import com.wangsheng.fastdevlibrary.commonutils.KeyBordUtil;
 import com.wangsheng.fastdevlibrary.commonutils.SystemBarTintManager;
-import com.wangsheng.fastdevlibrary.widget.SwipeBackLayout;
 import com.wangsheng.fastdevlibrary.widget.dialog.LoadDialog;
 
 import java.util.List;
 
+import me.yokeyword.swipebackfragment.SwipeBackActivity;
+import me.yokeyword.swipebackfragment.SwipeBackLayout;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
@@ -31,13 +31,11 @@ import pub.devrel.easypermissions.EasyPermissions;
  * 5. 滑动返回的效果 {@link #setSwipeBackEnabled(boolean)} 需要设置activity的style
  * 6. 沉浸状态栏效果 {@link #showCJ(boolean)}  一般使用{@link com.wangsheng.fastdevlibrary.widget.titlebar.TitleBarHelper}即可
  */
-public class FDLBaseActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
+public class FDLBaseActivity extends SwipeBackActivity implements EasyPermissions.PermissionCallbacks {
     protected Activity mActivity;
     //成功回调
     public ForResultCallBack forResultCallBack;
     private final static int ForCode = 101;
-    //返回控件
-    protected SwipeBackLayout mSwipeBackLayout;
     public View view;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +50,8 @@ public class FDLBaseActivity extends AppCompatActivity implements EasyPermission
     }
 
     private void initOption() {
-        //初始化滑动返回控件
-        mSwipeBackLayout = new SwipeBackLayout(this);
-        mSwipeBackLayout.attachToActivity(this);
-        mSwipeBackLayout.setBgTransparent();
+        // 设置滑动方向
+        getSwipeBackLayout().setEdgeOrientation(SwipeBackLayout.EDGE_ALL); // EDGE_LEFT(默认),EDGE_ALL
     }
 
     /**
@@ -94,7 +90,6 @@ public class FDLBaseActivity extends AppCompatActivity implements EasyPermission
 
     /** 是否起用滑动返回*/
     public void setSwipeBackEnabled(boolean isSwipeBackEnabled) {
-        mSwipeBackLayout.setSwipeBackEnabled(isSwipeBackEnabled);
     }
 
     @Override public void onRequestPermissionsResult(
