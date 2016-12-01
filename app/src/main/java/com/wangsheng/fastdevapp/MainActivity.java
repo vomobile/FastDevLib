@@ -8,11 +8,18 @@ import android.text.TextPaint;
 import android.view.View;
 import android.widget.Toast;
 
+import com.lzy.okgo.OkGo;
 import com.wangsheng.fastdevlibrary.base.FDLBaseActivity;
 import com.wangsheng.fastdevlibrary.commonutils.DisplayUtil;
+import com.wangsheng.fastdevlibrary.updateplugin.UpdateBuilder;
+import com.wangsheng.fastdevlibrary.updateplugin.model.Update;
+import com.wangsheng.fastdevlibrary.updateplugin.strategy.UpdateStrategy;
 import com.wangsheng.fastdevlibrary.widget.CountDownTimerButton;
 import com.wangsheng.fastdevlibrary.widget.spannabletextview.SpannableTextView;
 import com.wangsheng.fastdevlibrary.widget.spannabletextview.utils.SwClickableSpan;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class MainActivity extends FDLBaseActivity{
     @Override
@@ -20,6 +27,37 @@ public class MainActivity extends FDLBaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+//        UpdateBuilder.create().check(mActivity);
+        UpdateBuilder.create()
+                .strategy(new UpdateStrategy() {
+                    @Override
+                    public boolean isShowUpdateDialog(Update update) {
+                        // 有新更新直接展示
+                        return true;
+                    }
+
+                    @Override
+                    public boolean isAutoInstall() {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean isShowDownloadDialog() {
+                        // 展示下载进度
+                        return false;
+                    }
+                })
+                .check(MainActivity.this);
+
+        OkGo.post("https://mbl.jnbank.cc/pweb/SessionInit.do")//
+                .tag(this)//
+                .execute(new StrCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+
+                    }
+                });
+//        throw new RuntimeException("boom!!!");
     }
 
     private void initView(){

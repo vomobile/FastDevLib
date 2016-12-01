@@ -18,7 +18,7 @@ public class SecondActivity extends FDLBaseActivity {
         ButterKnife.bind(this);
         setSwipeBackEnabled(true);
         TopTitleBar topTitleBar = (TopTitleBar) findViewById(R.id.titleBar);
-        new TitleBarHelper.Builder(mActivity, topTitleBar).setImmersive(true, false, R.color.color_6b7072).setLeftVisible(false).setDividerVisible(false).setBackgroundColr(R.color.color_6b7072).build();
+        new TitleBarHelper.Builder(mActivity, topTitleBar).setImmersive(true,false,R.color.colorPrimary).setLeftVisible(false).setDividerVisible(false).setBackgroundColr(R.color.color_6b7072).build();
 //        new SampleTitleHelper(mActivity,(TopTitleBar)findViewById(R.id.titleBar), SampleTitleHelper.TITLE_STYLE.Normal,"第二页");
     }
 }

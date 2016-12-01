@@ -4,6 +4,16 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
+/**
+ * TopTitleBar的辅助类 建造者模式
+ * 用法例如：new TitleBarHelper.Builder(mActivity, topTitleBar)
+ *              .setImmersive(true,true,R.color.colorPrimary)
+ *              .setLeftVisible(false)
+ *              .setDividerVisible(false)
+ *              .setBackgroundColr(R.color.color_6b7072)
+ *              .build();
+ * 说明：当然一个应用中有很多类似功能、类似属性的标题头，你可以在这个上面再写几个常用的设置方法，更加方便
+ */
 public class TitleBarHelper {
 
     private TopTitleBar mTopTitleBar;
@@ -80,21 +90,41 @@ public class TitleBarHelper {
             return this;
         }
 
+        /**
+         * 设置头部中间标题布局
+         * @param view
+         * @return
+         */
         public Builder setCustomTitleView(View view){
             mTopTitleBar.setCustomTitleView(view);
             return this;
         }
 
+        /**
+         * 设置填充布局 该方法会整个填充原本的标题布局
+         * @param view
+         * @return
+         */
         public Builder setContentLayout(View view){
             mTopTitleBar.setContentLayout(view);
             return this;
         }
 
+        /**
+         * 设置分割线 drawable
+         * @param resId
+         * @return
+         */
         public Builder setDivider(int resId){
             mTopTitleBar.setDivider(resId);
             return this;
         }
 
+        /**
+         * 设置分割线 color
+         * @param color
+         * @return
+         */
         public Builder setDividerColor(int color){
             mTopTitleBar.setDividerColor(color);
             return this;
@@ -110,11 +140,21 @@ public class TitleBarHelper {
             return this;
         }
 
+        /**
+         * 设置topbar高度
+         * @param height
+         * @return
+         */
         public Builder setHeight(int height){
             mTopTitleBar.setHeight(height);
             return this;
         }
 
+        /**
+         * 是否内容居中
+         * @param flag
+         * @return
+         */
         public Builder setIsCenterAlways(boolean flag){
             mTopTitleBar.setIsCenterAlways(flag);
             return this;
@@ -150,6 +190,11 @@ public class TitleBarHelper {
             return this;
         }
 
+        /**
+         * 设置副标题
+         * @param resId
+         * @return
+         */
         public Builder setSubTitleBackground(int resId){
             mTopTitleBar.setSubTitleBackground(resId);
             return this;
@@ -185,11 +230,21 @@ public class TitleBarHelper {
             return this;
         }
 
+        /**
+         * 添加右边的menu
+         * @param action
+         * @return
+         */
         public Builder addAction(TopTitleBar.Action action){
             mTopTitleBar.addAction(action);
             return this;
         }
 
+        /**
+         * 添加右边的menu 位置
+         * @param action
+         * @return
+         */
         public Builder addAction(TopTitleBar.Action action, int index){
             mTopTitleBar.addAction(action,index);
             return this;
@@ -200,19 +255,34 @@ public class TitleBarHelper {
             return this;
         }
 
+        /**
+         * 设置背景图片 也可以在xml中设置 可以配合{@link #setImmersive(boolean, boolean, int...)}达到图片沉浸效果
+         * @param resId
+         * @return
+         */
         public Builder setBackgroundImageResource(int resId){
             mTopTitleBar.setBackgroundImageResource(resId);
             return this;
         }
 
+        /**
+         * 设置背景为颜色 可以配合{@link #setImmersive(boolean, boolean, int...)}达到颜色沉浸效果
+         * @param resId
+         * @return
+         */
         public Builder setBackgroundColr(int resId){
             mTopTitleBar.setBackgroundColr(resId);
             return this;
         }
 
-        //如果要设置图片  要么在xml中设置背景  isColor==false
-        public Builder setImmersive(boolean vis,boolean isColor,int color){
-            mTopTitleBar.setImmersive(vis,isColor,color);
+        //vis==true表示开启沉浸状态栏,isColor==true表示状态栏是第三个参数指定的颜色，color可以是int值也可以是in[]也可以不传
+        //简单来说前面的属性约束后面的属性
+        public Builder setImmersive(boolean vis,boolean isColor,int... color){
+            if (isColor && color!=null && color.length>0) {
+                mTopTitleBar.setImmersive(vis,isColor,color[0]);
+            }else{
+                mTopTitleBar.setImmersive(vis,false,-1);
+            }
             return this;
         }
 

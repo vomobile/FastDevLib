@@ -13,7 +13,6 @@ import com.wangsheng.fastdevlibrary.R;
 import com.wangsheng.fastdevlibrary.commonutils.DeviceUtil;
 import com.wangsheng.fastdevlibrary.commonutils.KeyBordUtil;
 import com.wangsheng.fastdevlibrary.commonutils.SystemBarTintManager;
-import com.wangsheng.fastdevlibrary.widget.dialog.LoadDialog;
 
 import java.util.List;
 
@@ -46,12 +45,12 @@ public class FDLBaseActivity extends SwipeBackActivity implements EasyPermission
         view = getWindow().getDecorView().findViewById(android.R.id.content);
         //初始化相关
         initOption();
-        LoadDialog.show(mActivity);
     }
 
     private void initOption() {
         // 设置滑动方向
         getSwipeBackLayout().setEdgeOrientation(SwipeBackLayout.EDGE_ALL); // EDGE_LEFT(默认),EDGE_ALL
+
     }
 
     /**

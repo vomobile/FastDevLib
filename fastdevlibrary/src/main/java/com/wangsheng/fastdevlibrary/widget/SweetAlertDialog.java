@@ -158,8 +158,20 @@ public class SweetAlertDialog {
             return this;
         }
 
+        public Builder setNegativeButton(int text, final OnDialogClickListener listener) {
+            this.mNegativeButtonText = mContext.getResources().getString(text);
+            mNegativeButtonListener = listener;
+            return this;
+        }
+
         public Builder setPositiveButton(CharSequence text, final OnDialogClickListener listener) {
             this.mPositiveButtonText = text;
+            this.mPositiveButtonListener = listener;
+            return this;
+        }
+
+        public Builder setPositiveButton(int text, final OnDialogClickListener listener) {
+            this.mPositiveButtonText = mContext.getResources().getString(text);
             this.mPositiveButtonListener = listener;
             return this;
         }

@@ -24,7 +24,7 @@ public class DefaultUpdateWorker extends UpdateWorker {
             urlConn.disconnect();
             throw new HttpException(responseCode,urlConn.getResponseMessage());
         }
-
+        String response = urlConn.getContent().toString();
         BufferedReader bis = new BufferedReader(new InputStreamReader(urlConn.getInputStream(), "utf-8"));
 
         StringBuilder sb = new StringBuilder();

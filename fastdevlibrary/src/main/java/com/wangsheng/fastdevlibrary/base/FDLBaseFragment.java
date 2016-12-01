@@ -13,7 +13,9 @@ import java.util.List;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
- * Fragment父类 处理了api23以上请求敏感权限问题、fragment由于被系统回收重建时的状态恢复问题
+ * Fragment父类
+ * 1.处理了api23以上请求敏感权限问题
+ * 2.fragment由于被系统回收重建时的状态恢复问题
  */
 public abstract class FDLBaseFragment extends Fragment implements EasyPermissions.PermissionCallbacks {
     private static final String STATE_IS_HIDDEN = "isHidden";

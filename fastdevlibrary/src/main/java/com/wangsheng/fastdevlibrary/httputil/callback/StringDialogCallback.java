@@ -40,4 +40,5 @@ public abstract class StringDialogCallback extends StringCallback {
             dialog.dismiss();
         }
     }
+
 }

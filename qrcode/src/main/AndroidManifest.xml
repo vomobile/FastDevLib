@@ -12,16 +12,16 @@
         android:supportsRtl="true">
 
         <!--本地测试相关 正式版本请注释掉-->
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+        <!--<activity android:name=".MainActivity"-->
+            <!--android:theme="@style/AppTheme">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".TestScanActivity" android:theme="@style/AppTheme"/>
-        <activity android:name=".TestGeneratectivity" android:theme="@style/AppTheme"/>
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+        <!--<activity android:name=".TestScanActivity" android:theme="@style/AppTheme"/>-->
+        <!--<activity android:name=".TestGeneratectivity" android:theme="@style/AppTheme"/>-->
         <!--本地测试相关 正式版本请注释掉-->
 
     </application>

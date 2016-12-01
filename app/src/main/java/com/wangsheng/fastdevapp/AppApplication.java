@@ -8,7 +8,16 @@ import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.store.PersistentCookieStore;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
+import com.wangsheng.fastdevlibrary.base.AppErrorActivity;
 import com.wangsheng.fastdevlibrary.base.FDLBaseApplication;
+import com.wangsheng.fastdevlibrary.commonutils.ToastUitl;
+import com.wangsheng.fastdevlibrary.commonutils.ToastUtil;
+import com.wangsheng.fastdevlibrary.updateplugin.UpdateConfig;
+import com.wangsheng.fastdevlibrary.updateplugin.callback.UpdateCheckCB;
+import com.wangsheng.fastdevlibrary.updateplugin.model.CheckEntity;
+import com.wangsheng.fastdevlibrary.updateplugin.model.Update;
+import com.wangsheng.fastdevlibrary.updateplugin.model.UpdateChecker;
+import com.wangsheng.fastdevlibrary.updateplugin.model.UpdateParser;
 
 import java.util.logging.Level;
 
@@ -22,27 +31,39 @@ import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
  * @usage
  */
 
-public class AppApplication extends FDLBaseApplication{
+public class AppApplication extends FDLBaseApplication {
+    private String apkFile;
+
     @Override
     public void onCreate() {
         super.onCreate();
+//        CustomActivityOnCrash.setShowErrorDetails(false);
+//        CustomActivityOnCrash.setDefaultErrorActivityDrawable(R.drawable.ic_empty_picture);
+        CustomActivityOnCrash.setErrorActivityClass(AppErrorActivity.class);
         CustomActivityOnCrash.install(this);
         initOkGo(this);
+        initUpdate();
     }
 
     /**
      * 初始化okgo
+     *
      * @return
      */
-    public void initOkGo(Application application){
+    public void initOkGo(Application application) {
 
         //---------这里给出的是示例代码,告诉你可以这么传,实际使用的时候,根据需要传,不需要就不传-------------//
         HttpHeaders headers = new HttpHeaders();
-        headers.put("commonHeaderKey1", "commonHeaderValue1");    //header不支持中文
-        headers.put("commonHeaderKey2", "commonHeaderValue2");
+        headers.put("Connection", "Keep-Alive");    //header不支持中文
+        headers.put("Accept", "application/json");
+        headers.put("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
         HttpParams params = new HttpParams();
-        params.put("commonParamsKey1", "commonParamsValue1");     //param支持中文,直接传,不要自己编码
-        params.put("commonParamsKey2", "这里支持中文参数");
+        params.put("_locale", "zh_CN");     //param支持中文,直接传,不要自己编码
+        params.put("BankId", "9999");
+        params.put("TermEquipment", "");
+        params.put("DeviceName", "");
+        params.put("SysVersion", "");
+        params.put("LoginType", "P");
         //-----------------------------------------------------------------------------------//
 
         //必须调用初始化
@@ -101,6 +122,72 @@ public class AppApplication extends FDLBaseApplication{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void initUpdate() {
+        apkFile = "http://apk.hiapk.com/web/api.do?qt=8051&id=721";
+        // Application中对Config进行配置
+        UpdateConfig.getConfig()
+                .checkEntity(new CheckEntity().setUrl("https://mbl.jnbank.cc/pweb/SessionInit.do"))
+                .jsonParser(new UpdateParser() {
+                    @Override
+                    public Update parse(String response) {
+                        //这里处理接口返回的数据  塞入更新实体类中
+
+                        // 此处模拟一个Update对象，传入接口返回的原始数据进去保存。
+                        // 若用户需要自定义的时候。对于有额外参数。可从中获取并定制。
+                        Update update = new Update("");
+                        // 此apk包的更新时间
+                        update.setUpdateTime(System.currentTimeMillis());
+                        // 此apk包的下载地址
+                        update.setUpdateUrl(apkFile);
+                        // 此apk包的版本号
+                        update.setVersionCode(2);
+                        // 此apk包的版本名称
+                        update.setVersionName("2.0");
+                        // 此apk包的更新内容
+                        update.setUpdateContent("测试更新");
+                        // 此apk包是否为强制更新
+                        update.setForced(false);
+                        // 是否显示忽略此次版本更新
+                        update.setIgnore(true);
+                        return update;
+                    }
+                })
+                // 此参数可不配置。配置在此作为全局的更新接口回调通知
+                .checkCB(new UpdateCheckCB() {
+                    @Override
+                    public void hasUpdate(Update update) {
+
+                    }
+
+                    @Override
+                    public void noUpdate() {
+                        ToastUitl.showLong("没有更新");
+                    }
+
+                    @Override
+                    public void onCheckError(int code, String errorMsg) {
+                        ToastUtil.showLong("出错");
+                    }
+
+                    @Override
+                    public void onUserCancel() {
+                        ToastUitl.showLong("取消更新");
+                    }
+
+                    @Override
+                    public void onCheckIgnore(Update update) {
+                        ToastUitl.showLong("忽略");
+                    }
+                })
+                .checkWorker(new AppCheckWorker())
+                .updateChecker(new UpdateChecker() {
+                    @Override
+                    public boolean check(Update update) {
+                        return true;
+                    }
+                });
     }
 
 }
